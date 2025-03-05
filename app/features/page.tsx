@@ -92,11 +92,18 @@ export default function FeaturesPage() {
               <p className="text-xl text-muted-foreground mb-8">
                 Discover how StudyGenius AI transforms your study materials into powerful learning tools
               </p>
-              <Button size="lg" asChild>
-                <Link href="/signup">
-                  Try It Free <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <div className="flex gap-4 justify-center">
+                <Button size="lg" asChild>
+                  <Link href="/signup">
+                    Try It Free <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button size="lg" variant="secondary" asChild>
+                  <Link href="/payment?plan=premium&billing=monthly">
+                    Go Premium
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
@@ -144,6 +151,9 @@ export default function FeaturesPage() {
                   <Link href="/signup">
                     Get Started Free <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
+                </Button>
+                <Button size="lg" variant="outline" className="border-primary-foreground/20 hover:bg-primary-foreground/10" asChild>
+                  <Link href="/payment?plan=premium&billing=monthly">Go Premium</Link>
                 </Button>
                 <Button size="lg" variant="outline" className="border-primary-foreground/20 hover:bg-primary-foreground/10" asChild>
                   <Link href="/pricing">View Pricing</Link>

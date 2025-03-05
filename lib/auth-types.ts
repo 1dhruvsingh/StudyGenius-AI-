@@ -9,8 +9,11 @@ export interface User {
     endDate?: string;
   };
   subscription?: {
-    plan: 'free' | 'basic' | 'premium' | 'pro';
+    plan: 'free' | 'basic' | 'premium' | 'academic';
     isActive: boolean;
+    startDate?: string;
+    endDate?: string;
+    billingCycle?: 'monthly' | 'annual';
   };
 }
 

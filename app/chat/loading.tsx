@@ -35,10 +35,12 @@ export default function ChatLoading() {
             <CardHeader className="pb-0">
               <div className="flex justify-between items-center">
                 <CardTitle><Skeleton className="h-6 w-1/3" /></CardTitle>
-                <TabsList>
-                  <TabsTrigger value="chat" disabled>Chat</TabsTrigger>
-                  <TabsTrigger value="content" disabled>Content</TabsTrigger>
-                </TabsList>
+                <Tabs defaultValue="chat">
+                  <TabsList>
+                    <TabsTrigger value="chat" disabled>Chat</TabsTrigger>
+                    <TabsTrigger value="content" disabled>Content</TabsTrigger>
+                  </TabsList>
+                </Tabs>
               </div>
               <CardDescription>
                 <Skeleton className="h-4 w-2/3" />

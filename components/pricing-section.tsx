@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
@@ -154,8 +155,17 @@ export function PricingSection() {
                   <Button 
                     className="w-full" 
                     variant={plan.popular ? "default" : "outline"}
+                    asChild
                   >
-                    {plan.cta}
+                    {plan.name === "Free" ? (
+                      <Link href="/signup">
+                        {plan.cta}
+                      </Link>
+                    ) : (
+                      <Link href={`/payment?plan=${plan.name.toLowerCase()}&billing=${annual ? 'annual' : 'monthly'}`}>
+                        {plan.cta}
+                      </Link>
+                    )}
                   </Button>
                 </CardFooter>
               </Card>

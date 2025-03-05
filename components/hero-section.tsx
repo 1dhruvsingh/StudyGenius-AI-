@@ -96,7 +96,12 @@ export function HeroSection() {
           >
             <Button size="lg" asChild>
               <Link href="/signup">
-                Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                Start Free <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button size="lg" variant="secondary" asChild>
+              <Link href="/payment?plan=premium&billing=monthly">
+                Go Premium
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>

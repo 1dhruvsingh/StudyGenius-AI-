@@ -205,7 +205,11 @@ export default function PricingPage() {
                       variant={plan.popular ? "default" : "outline"}
                       asChild
                     >
-                      <Link href="/signup">{plan.cta}</Link>
+                      {plan.name === "Free" ? (
+                        <Link href="/signup">{plan.cta}</Link>
+                      ) : (
+                        <Link href={`/payment?plan=${plan.name.toLowerCase()}&billing=${annual ? 'annual' : 'monthly'}`}>{plan.cta}</Link>
+                      )}
                     </Button>
                   </CardFooter>
                 </Card>

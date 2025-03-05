@@ -27,6 +27,9 @@ export function CTASection() {
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="border-primary-foreground/20 hover:bg-primary-foreground/10" asChild>
+              <Link href="/payment?plan=premium&billing=monthly">Go Premium</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="border-primary-foreground/20 hover:bg-primary-foreground/10" asChild>
               <Link href="/features">Learn More</Link>
             </Button>
           </div>

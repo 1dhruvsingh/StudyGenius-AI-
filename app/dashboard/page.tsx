@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
+import { getUserPlanName } from "@/lib/payment-service";
 import { EnhancedNavbar } from "@/components/enhanced-navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -91,6 +92,7 @@ const upcomingExams = [
 
 export default function DashboardPage() {
   const { user, logout } = useAuth();
+  const userPlan = getUserPlanName(user);
   const router = useRouter();
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("materials");
@@ -123,7 +125,19 @@ export default function DashboardPage() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-            <p className="text-muted-foreground">Welcome back, {user?.name || "Student"}!</p>
+            <div className="flex items-center gap-2">
+              <p className="text-muted-foreground">Welcome back, {user?.name || "Student"}!</p>
+              <div className="flex items-center gap-2">
+                <span className={`px-3 py-1 rounded-full text-xs font-medium ${userPlan === 'Free' ? 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200' : userPlan === 'Premium' ? 'bg-primary/10 text-primary' : 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300'}`}>
+                  {userPlan} Plan
+                </span>
+                {userPlan !== 'Free' && (
+                  <Link href="/payment-methods" className="text-xs text-primary hover:underline">
+                    Manage Payment
+                  </Link>
+                )}
+              </div>
+            </div>
           </div>
           
           <div className="flex gap-4 mt-4 md:mt-0">
@@ -137,6 +151,13 @@ export default function DashboardPage() {
                 <MessageSquare className="mr-2 h-4 w-4" /> Chat Assistant
               </Link>
             </Button>
+            {userPlan === 'Free' && (
+              <Button asChild variant="secondary">
+                <Link href="/pricing">
+                  <Sparkles className="mr-2 h-4 w-4" /> Upgrade
+                </Link>
+              </Button>
+            )}
           </div>
         </div>
         
