@@ -3,6 +3,15 @@ export interface User {
   email: string;
   name: string;
   isVerified: boolean;
+  trialStatus?: {
+    isActive: boolean;
+    startDate?: string;
+    endDate?: string;
+  };
+  subscription?: {
+    plan: 'free' | 'basic' | 'premium' | 'pro';
+    isActive: boolean;
+  };
 }
 
 export interface LoginCredentials {

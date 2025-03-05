@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain, ArrowRight, Mail, Lock, Loader2 } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 // Form validation schema
 const loginSchema = z.object({
@@ -50,7 +51,7 @@ export default function LoginPage() {
           title: "Login successful!",
           description: "Welcome back to StudyGenius AI",
         });
-        router.push("/dashboard");
+        // Redirection is now handled in the auth context
       } else {
         toast({
           variant: "destructive",

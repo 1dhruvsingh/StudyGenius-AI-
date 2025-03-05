@@ -46,6 +46,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (result.user) {
         setUser(result.user);
         storeUserSession(result.user);
+        
+        // Check if user has an active trial or subscription
+        // In a real app, this would be determined by user data from backend
+        const hasActiveTrial = false; // Mock value, should come from API
+        
+        // Redirect new users to free trial first time they login
+        if (!hasActiveTrial) {
+          router.push('/free-trial');
+        } else {
+          router.push('/dashboard');
+        }
+        
         setIsLoading(false);
         return { success: true };
       } else {
@@ -66,6 +78,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (result.user) {
         setUser(result.user);
         storeUserSession(result.user);
+        
+        // New signups should always go to free trial page
+        router.push('/free-trial');
+        
         setIsLoading(false);
         return { success: true };
       } else {

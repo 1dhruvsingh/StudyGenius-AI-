@@ -94,8 +94,7 @@ export default function SignupPage() {
       });
       
       if (result.success) {
-        // Redirect on success
-        router.push("/dashboard");
+        // Redirect is now handled in the auth context
       } else {
         console.error("Sign up failed:", result.error);
         // Display error message in the UI

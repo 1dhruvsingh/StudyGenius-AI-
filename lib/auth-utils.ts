@@ -23,7 +23,16 @@ export async function loginUser(credentials: LoginCredentials): Promise<{ user: 
         id: 'user-' + Math.random().toString(36).substr(2, 9),
         email: credentials.email,
         name: credentials.email.split('@')[0],
-        isVerified: true
+        isVerified: true,
+        trialStatus: {
+          isActive: false, // For login we assume they haven't started a trial yet
+          startDate: null,
+          endDate: null
+        },
+        subscription: {
+          plan: 'free',
+          isActive: true
+        }
       }
     };
   } catch (error) {
@@ -57,7 +66,16 @@ export async function signupUser(credentials: SignupCredentials): Promise<{ user
         id: 'user-' + Math.random().toString(36).substr(2, 9),
         email: credentials.email,
         name: credentials.name,
-        isVerified: false
+        isVerified: false,
+        trialStatus: {
+          isActive: false, // They haven't activated the trial yet
+          startDate: null,
+          endDate: null
+        },
+        subscription: {
+          plan: 'free',
+          isActive: true
+        }
       }
     };
   } catch (error) {
@@ -103,5 +121,46 @@ export function forgotPassword(email: string): Promise<{ success: boolean; error
         resolve({ success: true });
       }
     }, 1000);
+  });
+}
+
+// Function to activate a user's free trial
+export function activateFreeTrial(): Promise<{ success: boolean; error?: string }> {
+  // This is a mock implementation for demo purposes
+  // In a real app, this would make an API call to your backend
+  
+  return new Promise(resolve => {
+    setTimeout(() => {
+      try {
+        // Get the current user
+        const user = getUserSession();
+        
+        if (!user) {
+          resolve({ success: false, error: 'No authenticated user found' });
+          return;
+        }
+        
+        // Update trial status
+        const startDate = new Date();
+        const endDate = new Date();
+        endDate.setDate(startDate.getDate() + 14); // 14-day trial
+        
+        const updatedUser = {
+          ...user,
+          trialStatus: {
+            isActive: true,
+            startDate: startDate.toISOString(),
+            endDate: endDate.toISOString()
+          }
+        };
+        
+        // Update user in storage
+        storeUserSession(updatedUser);
+        
+        resolve({ success: true });
+      } catch (error) {
+        resolve({ success: false, error: 'Failed to activate trial' });
+      }
+    }, 800);
   });
 }

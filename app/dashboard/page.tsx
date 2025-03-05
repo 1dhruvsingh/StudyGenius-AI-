@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { SiteFooter } from "@/components/site-footer";
 import { Brain, BookOpen, FileText, PenTool, Sparkles, Upload, Plus, Search, Clock, BarChart, MessageSquare } from "lucide-react";
 

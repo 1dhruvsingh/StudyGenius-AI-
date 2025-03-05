@@ -1,7 +1,9 @@
 {
   "/page": "app/page.js",
   "/login/page": "app/login/page.js",
-  "/signup/page": "app/signup/page.js",
-  "/forgot-password/page": "app/forgot-password/page.js",
-  "/features/page": "app/features/page.js"
+  "/free-trial/page": "app/free-trial/page.js",
+  "/chat/page": "app/chat/page.js",
+  "/upload/page": "app/upload/page.js",
+  "/features/page": "app/features/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
 }
