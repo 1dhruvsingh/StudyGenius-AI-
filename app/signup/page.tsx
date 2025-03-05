@@ -11,7 +11,6 @@ import { useAuth } from "@/lib/auth-context";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/components/ui/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain, ArrowRight, Mail, Lock, User, Loader2 } from "lucide-react";
@@ -40,10 +39,10 @@ type SignupFormValues = z.infer<typeof signupSchema>;
 export default function SignupPage() {
   const { signup } = useAuth();
   const router = useRouter();
-  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
+  const [signupError, setSignupError] = useState("");
 
   const {
     register,
@@ -95,24 +94,17 @@ export default function SignupPage() {
       });
       
       if (result.success) {
-        toast({
-          title: "Account created successfully!",
-          description: "Welcome to StudyGenius AI",
-        });
+        // Redirect on success
         router.push("/dashboard");
       } else {
-        toast({
-          variant: "destructive",
-          title: "Sign up failed",
-          description: result.error || "Please check your information and try again",
-        });
+        console.error("Sign up failed:", result.error);
+        // Display error message in the UI
+        setSignupError(result.error || "Please check your information and try again");
       }
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Something went wrong",
-        description: "Please try again later",
-      });
+      console.error("Signup error:", error);
+      // Display error message in the UI
+      setSignupError("Something went wrong. Please try again later.");
     } finally {
       setIsLoading(false);
     }
@@ -158,6 +150,11 @@ export default function SignupPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
+                {signupError && (
+                  <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md mb-4">
+                    {signupError}
+                  </div>
+                )}
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="flex items-center gap-2">

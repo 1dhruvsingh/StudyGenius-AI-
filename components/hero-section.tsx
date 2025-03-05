@@ -66,10 +66,10 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden">
+    <section className="relative py-20 md:py-28 overflow-hidden w-full">
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent dark:from-primary/10" />
       
-      <div className="container relative">
+      <div className="container relative mx-auto px-4">
         <motion.div
           className="flex flex-col items-center text-center max-w-4xl mx-auto"
           variants={containerVariants}

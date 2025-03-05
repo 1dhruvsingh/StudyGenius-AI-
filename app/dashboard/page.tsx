@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/use-toast";
 import { SiteFooter } from "@/components/site-footer";
-import { Brain, BookOpen, FileText, PenTool, Sparkles, Upload, Plus, Search, Clock, BarChart } from "lucide-react";
+import { Brain, BookOpen, FileText, PenTool, Sparkles, Upload, Plus, Search, Clock, BarChart, MessageSquare } from "lucide-react";
 
 // Mock data for study materials
 const studyMaterials = [
@@ -132,6 +132,11 @@ export default function DashboardPage() {
                 <Upload className="mr-2 h-4 w-4" /> Upload Material
               </Link>
             </Button>
+            <Button asChild variant="outline">
+              <Link href="/chat">
+                <MessageSquare className="mr-2 h-4 w-4" /> Chat Assistant
+              </Link>
+            </Button>
           </div>
         </div>
         
@@ -229,6 +234,11 @@ export default function DashboardPage() {
                     <Button variant="outline" size="sm" className="w-full">
                       <BookOpen className="mr-2 h-4 w-4" /> Quiz
                     </Button>
+                    <Button asChild variant="outline" size="sm" className="w-full">
+                      <Link href={`/chat?file=${material.id}`}>
+                        <MessageSquare className="mr-2 h-4 w-4" /> Chat
+                      </Link>
+                    </Button>
                   </CardFooter>
                 </Card>
               ))}
@@ -241,6 +251,17 @@ export default function DashboardPage() {
                   </div>
                   <p className="font-medium">Add New Material</p>
                   <p className="text-sm text-muted-foreground">Upload documents or notes</p>
+                </Link>
+              </Card>
+              
+              {/* Chat with AI card */}
+              <Card className="overflow-hidden border-dashed flex items-center justify-center cursor-pointer hover:bg-secondary/50 transition-colors h-[220px]">
+                <Link href="/chat" className="flex flex-col items-center justify-center p-6 text-center">
+                  <div className="rounded-full bg-secondary p-4 mb-4">
+                    <MessageSquare className="h-6 w-6 text-secondary-foreground" />
+                  </div>
+                  <p className="font-medium">Chat with AI</p>
+                  <p className="text-sm text-muted-foreground">Generate summaries, notes, and more</p>
                 </Link>
               </Card>
             </div>
