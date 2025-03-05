@@ -9,7 +9,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/components/ui/use-toast";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain, Mail, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react";
 import { forgotPassword } from "@/lib/auth-utils";
@@ -22,7 +21,6 @@ const forgotPasswordSchema = z.object({
 type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
 
 export default function ForgotPasswordPage() {
-  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 

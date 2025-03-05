@@ -44,7 +44,7 @@ export function EnhancedNavbar() {
           : "bg-background/70 dark:bg-black/70 backdrop-blur-sm"
       )}
     >
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2 group">
             <motion.div
@@ -173,7 +173,7 @@ export function EnhancedNavbar() {
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
-            <nav className="container flex flex-col gap-6 p-6">
+            <nav className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 p-6">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}

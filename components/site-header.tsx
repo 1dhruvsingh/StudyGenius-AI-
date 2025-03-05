@@ -12,7 +12,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2">
             <Brain className="h-6 w-6 text-primary" />
@@ -60,7 +60,7 @@ export function SiteHeader() {
         "md:hidden fixed inset-0 top-16 z-50 bg-background transition-transform duration-300 ease-in-out",
         isMenuOpen ? "translate-x-0" : "translate-x-full"
       )}>
-        <nav className="container flex flex-col gap-6 p-6">
+        <nav className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 p-6">
           <Link 
             href="/features" 
             className="text-lg font-medium transition-colors hover:text-primary"
